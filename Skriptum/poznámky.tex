@@ -1,0 +1,619 @@
+% !TeX spellcheck = cs_CZ
+\documentclass{article}
+
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage{blindtext}
+\usepackage{indentfirst}
+\usepackage[Q=yes]{examplep}
+\usepackage{multicol}
+\usepackage{booktabs}
+\usepackage{dcolumn}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+
+\setlength{\parindent}{2.5em}
+\setlength{\parskip}{1em}
+
+\title{\textbf{\LaTeX\enspace workshop s Vítkem}\\
+	\uv{Studenti studentům} na FEL ČVUT}
+\date{18. prosince 2018}
+\author{Vít Valečka}
+
+\begin{document}
+
+\maketitle
+
+\vspace{10em}
+
+\section*{Slovo úvodem}
+
+Tento dokument, byť je součástí krátkého workshopu s tématem publikačního systému \LaTeX, v žádném případě není kompletním popisem dovedností tohoto značkovacího jazyka, ani by neměl sloužit jako nějaká učebnice.
+
+Cílem této práce je ukázat naprosté základy práce, upozornit na možná úskalí a navnadit čtenáře/posluchače k dalšímu studiu této problematiky, ať už samostatnému, nebo například prostřednictvím mezifakultního zápisu předmětu \emph{01PSL Publikační systém \LaTeX} vyučovaném na Fakultě jaderné a fyzikálně inženýrské (FJFI) ČVUT v Praze, který vyučuje doktor Petr Ambrož.
+
+\clearpage
+
+\section{Trocha teorie}
+
+\TeX\enspace je program pro počítačovou sazbu. Vytvořil jej profesor Donald Ervin Knuth, který v 70. letech 20. století nebyl spokojen s tím, jak školní nakladatelství sázelo jeho skripta určená studentům. Ve skriptech se objevovalo mnoho chyb, především v matematických vzorcích, a ani typografie za mnoho nestála.
+
+Je velmi populární zejména v akademických kruzích, zvláště v oborech jako je matematika, fyzika a informatika. Uplatnění ale může najít i v jiných oborech, např. humanitních – sazba je kvalitní nejen v případě matematiky, ale také v případě znaků různých abeced. Tímto programem byl z větší části vytlačen troff, formátovací systém preferovaný na mnoha Unixech. K dispozici je mnoho rozšiřujících balíků od velmi početných komunit uživatelů. Například existují balíky pro sazbu textu v podobě čárového kódu nebo vysázení obrázku situace šachové partie pomocí jediného příkazu. Taktéž existují komerční programové balíky.
+
+\TeX\  je obecně považován za nejlepší nástroj pro sazbu složitých matematických vzorců. Je však hojně používán i v běžné sazbě, stejně tak jako jeho odvozeniny a nadstavby, zvláště pak balík maker \LaTeX. I Wikipedie používá na svých stránkách tento systém pro matematické výrazy.
+
+Zajímavostí je způsob označování verzí programu: místo tradičního zvyšování čísla verze se označení verze \TeX\  u prodlužuje o další číslici desetinného rozvoje Ludolfova čísla. Za nalezení chyby v programu nabízí Donald Knuth odměnu, která v současné době činí \$327,68. Další zajímavostí je skutečnost, že Donald Knuth vyjádřil přání, ať bezprostředně po jeho smrti přestane být \TeX\  dále vyvíjen a verze aktuální v toto datum se stane verzí finální, označenou právě číslem pí.
+
+\LaTeX\  (vyslovuje se [latech]), je balík maker programu \TeX, který umožňuje autorům textů sázet a tisknout svá díla ve velmi vysoké typografické kvalitě, přičemž autor používá profesionály předdefinovaných vzhledů dokumentu. \LaTeX\  byl původně napsán Lesliem Lamportem. \LaTeX\  užívá programu \TeX\  jako sázecího stroje.
+
+Od 90. let je LaTeX rozšiřován týmem \LaTeX 3, který vede Frank Mittelbach. Tento tým se snaží sjednotit všechny rozšiřující verze \LaTeX u, které postupně vznikaly od verze 2.09. Aby byla nějakým způsobem odlišena stará verze od nové, byla zatím aktuální označena jako \LaTeX 2$\varepsilon$.
+
+\clearpage
+
+\section{Základní struktura dokumentu}
+\subsection{Úvod do struktury}
+
+Dokument psaný v \LaTeX u se dělí na dvě základní části -- \emph{preambuli} a \emph{tělo dokumentu}.
+
+\begin{description}
+\item[Preambule] obsahuje importry používaných balíčků, nastavení dokumentu (např. velikosti okrajů stránky, styly odstavců a textu atd.), informace o dokumentu samotném, definice vlastních příkazů a další.
+\item[Tělo dokumentu] pak zahrnuje samotný obsah, který chceme sdělit. Patří sem tedy samotný text, kapitoly, obrázky...
+\end{description}
+
+\noindent Při psaní dokumentu je také dobré myslet na 5 základních vlastnosti:
+\begin{itemize}
+	\item libovolný počet mezer v textu se bere jako jedna mezera
+	\item mezery na začátku řádku jsou ignorovány
+	\item prázdný řádek (popř. libovolný počet prázdných řádků) se bere jako nový odstavec
+\end{itemize}
+
+\noindent V \LaTeX u také platí, že:
+\begin{itemize}
+	\item všechny příkazy začínají \verb|\| (zpětným lomítkem)
+	\item příkaz může mí hlavní a vedlejší parametry -- \verb|prikaz[vedlejsi]{hlavni}|
+	\item speciální znaky se \uv{escapují} \verb|\| (zpětným lomítkem)
+\end{itemize}
+
+\subsection{Části dokumentu}
+
+\noindent Každý \LaTeX ový dokument obsahuje tři základní značky:
+
+\begin{description}
+	\item[\Q{documentclass{class}}] -- určuje typ dokumentu (jedná se v podstatě o \uv{šablonu} pro vzhled). Za parametr \uv{class} se doplňuje název šablony. Mezi nejpoužívanější třídy dokumentu patří \verb|article|, \verb|book| a \verb|report|.
+	\item[\Q{begin{document}}] -- značí začátek samotného dokumentu -- zde se vše zapisuje.
+	\item[\Q{end{document}}] -- značí konec samotného dokumentu -- vše za touto značkou se ignoruje.
+\end{description}
+
+
+\noindent\textbf{Příklad 1 -- Hello World!}
+
+Kód níže vytvoří dokument, jehož jediným obsahem bude text \uv{Hello World!}.
+
+\noindent\verb|\documentclass{article}|\\
+\verb|\begin{document}|\\
+\verb|  Hello World!|\\
+\verb|\end{document}|
+
+\section{Načítání rozšiřujících balíčků}
+
+Načítání balíčků, které rozšiřují základní funkcionalitu se provádí v preambuli pomocí příkazu \verb|usepackage[]{}|.
+
+Do prvních (hranatých) závorek se uvádí volitelné parametry, do druhých (složených) povinné parametry - typicky název balíčku, který načítáme.
+
+\clearpage
+
+\section{Čeština v \LaTeX u}
+
+Základní font, který je využíván, není přizpůsoben pro korektní zobrazování českého jazyka -- konkrétně pak diakritiky. Z tohoto důvodu pro správnou sazbu využíváme balíček \emph{Babel} a některou ze sad českých písem, typicky \mbox{\emph{fontenc}}.
+
+Pro korektní zobrazení speciálních znaků a češtiny je také dobré přepnout kódování dokumentu do UTF-8 popřípadě CHCP 1250.
+
+\begin{description}
+	\item[\Q{usepackage[czech]{babel}}] -- načte balíček obsahující pravidla pro češtinu (formáty data, odstavců atd.).
+	\item[\Q{usepackage[utf8]{inputenc}}] -- nastaví dokument, aby využíval pro kódování textu UTF-8.
+	\item[\Q{usepackage[IL2]{fontenc}}] -- načte balíček s českým fontem.
+\end{description}
+
+\noindent\textbf{Příklad 2 -- Žluťoučký kůň}
+
+Kód níže vytvoří dokument, jehož jediným obsahem bude text \uv{Hello World!}.
+
+\noindent\verb|\documentclass{article}|\\
+\verb|\usepackage[czech]{babel}|\\
+\verb|\usepackage[utf8]{inputenc}|\\
+\verb|\usepackage[IL2]{fontenc}|\\
+\verb|\begin{document}|\\
+\verb|  Příliš žluťoučký kůň úpěl ďábelské ódy.|\\
+\verb|\end{document}|
+
+\clearpage
+
+\section{Formátování textu}
+
+\noindent Dále následuje seznam základních značek pro formátování textu.
+
+\subsection{Znaky a formát textu}
+
+\begin{description}
+	\item[\%] -- jednořádková poznámka v kódu (\LaTeX\  nemá víceřádkové poznámky)
+	\item[\Q{-}] (-) -- spojovník
+	\item[\Q{--}] (--) -- pomlčka
+	\item[\Q{---}] (---) -- dlouhá pomlčka
+	\item[\Q{emph{text}}] (\emph{text}) -- zvýraznění textu (s ohledem na aktuálně použitou šablonu)
+	\item[\Q{textbf{text}}] (\textbf{text}) -- tučný text
+	\item[\Q{textit{text}}] (\textit{text}) -- text psaný kurzívou
+	\item[\Q{textrm{text}}] -- normální text (pokud například styl dokumentu zavádí, že standardně je text kurzívou)
+	\item[\Q{underline{text}}] (\underline{text}) -- podtržený text
+	\item[\Q{texttt{aimnl}}] (\texttt{aimnl}) -- neproporcionální text
+	\item[\Q{textsc{text}}] (\textsc{text}) -- text v kapitálkách
+	\item[\Q{textsf{text}}] (\textsf{text}) -- bezpatkový text
+	\item[\Q{indent}] -- odsazení prvního řádku odstavce dle předpisů v šabloně, nebo uživatelem definovaných
+	\item[\Q{noindent}] (--) -- zruší odsazení prvního řádku odstavce
+	\item[\Q{uv{text}}] (\uv{text}) -- umístí text do uvozovek dle aktuálně použité jazykové sady
+\end{description}
+
+\subsection{Tok textu}
+
+\begin{description}
+	\item[\Q{\\}] -- přechod na nový řádek
+	\item[\Q{newpage}] -- vloží konec stránky
+	\item[\Q{clearpage}] -- vloží konec stránky
+	\item[\Q{hspace{2em}}] -- vloží horizontální mezeru do textu (možno využít všechny obvyklé jednotky -- px, em, cm, mm...)
+	\item[\Q{vspace{2em}}] -- vloží vertikální mezeru
+	\item[\Q{vspace*{2em}}] -- vloží vertikální mezeru mezi \uv{něco} a \uv{nic} (např. mezi text a okraj stránky)
+	\item[\Q{mbox{text}}] -- obaluje text, který nesmí být rozdělený na konci řádku
+	\item[\Q{begin{flushleft} ... end{flushleft}}] -- zarovnání textu dle zadaného parametru -- existují tři možnosti \verb|flushleft| -- vlevo, \verb|flushright| -- vpravo a \verb|center| -- na střed.
+\end{description}
+
+\subsection{Rozložení stránky}
+
+Studium tohoto tématu ponecháme na čtenáři. Omezíme se pouze na informaci, že aktuální rozložení stránky lze vypsat příkazem \verb|layout|, zde jsou vypsány i příkazy, kterými lze jednotlivé parametry (okraje, šířku prostoru pro text...). Jako konkrétní příklad můžeme uvést např.:
+
+\noindent\verb|setlength{\textheight}{24.7cm}|
+
+První parametr určuje, kterou vlastnost chceme měnit, druhý pak nastavovanou velikost.
+
+Lze také volit nastavení jen pro sudé nebo liché stránky:
+
+\noindent\verb|setlength{\oddsidemargin}{-0.04cm}|
+
+A je také možné pracovat s jednotlivými již nastavenými parametry a provádět s nimi jednoduché matematické operace (sčítání, odčítání):
+
+\noindent\verb|setlength{\topmargin}{-\headheight-\headsep}|
+
+\section{Kapitoly}
+
+\begin{description}
+	\item[\Q{section{nadpis}}] -- vloží číslovaný nadpis kapitoly
+	\item[\Q{subsection{nadpis}}] -- vloží číslovaný nadpis podkapitoly, přidáním dalších předpon \uv{sub} lze více vnořovat
+	\item[\Q{section*{nadpis}}] -- vloží nečíslovaný nadpis kapitoly, analogicky funguje také pro podkapitoly
+\end{description}
+
+\clearpage
+
+\section{Seznamy}
+
+\subsection{Bodové odrážky}
+
+\noindent\textbf{Příklad 3}
+\begin{multicols}{2}
+\begin{verbatim}
+	\begin{itemize}
+	\item semper vel quam at
+	\item rutrum tristique metus
+	\item[:)] vivamus elementum lectus
+	\end{itemize}
+\end{verbatim}
+\columnbreak
+\begin{itemize}
+	\item semper vel quam at
+	\item rutrum tristique metus
+	\item[:)] vivamus elementum lectus
+\end{itemize}
+\end{multicols}
+
+\subsection{Číslované odrážky}
+
+\noindent\textbf{Příklad 4}
+\begin{multicols}{2}
+	\begin{verbatim}
+	\begin{enumerate}
+	\item donec non hendrerit erat
+	\item et suscipit turpis
+	\item donec interdum turpis
+	\end{enumerate}
+	\end{verbatim}
+\columnbreak
+	\begin{enumerate}
+		\item donec non hendrerit erat
+		\item et suscipit turpis
+		\item donec interdum turpis
+	\end{enumerate}
+\end{multicols}
+
+\subsection{Pojmenované odrážky}
+
+\noindent\textbf{Příklad 5}
+\begin{verbatim}
+	\begin{description}
+		\item[Suspendisse] non risus ante. Donec sed pharetra massa...
+		\item[Quisque] non augue ut libero vehicula ullamcorper at quis...
+	\end{description}
+\end{verbatim}
+
+\begin{description}
+	\item[Suspendisse] non risus ante. Donec sed pharetra massa. Nam leo libero, condimentum in sollicitudin eget, porta sed quam.
+	\item[Quisque] non augue ut libero vehicula ullamcorper at quis mauris. Phasellus tincidunt velit eget dui malesuada ultrices.
+\end{description}
+
+\clearpage
+
+\section{Tabulky}
+
+Tvorba tabulek je v \LaTeX u podobná tvorbě v HTML. Bez složitého úvodu si vše ukážeme na příkladu:
+
+\noindent\textbf{Příklad 6}
+
+\begin{verbatim}
+	\begin{tabular}{||l|c|p{4cm}|}
+	\hline Kdo & Kolik & Poznámka \\
+	\hline Alice & 151 & To je docela dost, otázka jak k tomu přišla. \\
+	Bob & 21 & Nic moc Bobe, zaber. \\
+	\hline
+	\end{tabular}
+\end{verbatim}
+\begin{tabular}{||l|c|p{4cm}|}
+	\hline Kdo & Kolik & Poznámka \\
+	\hline Alice & 151 & To je docela dost, otázka jak k tomu přišla. \\
+	Bob & 21 & Nic moc Bobe, zaber. \\
+	\hline
+\end{tabular}
+
+\subsection{Formátování tabulky}
+
+\begin{description}
+	\item[\Q{begin{tabular}{params}}] -- začátek definice tabulky, slovo \verb|tabular| specifikuje, že se jedná o tabulku, ve druhých složených závorkách je pak specifikováno rozložení tabulky (sloupce)
+	\item[\Q{end{tabular}}] -- konec tabulky
+	\item[\Q{hline}] -- vytvoří vodorovné ohraničení mezi řádky tabulky, uvádí se na první řádek pod ohraničením
+	\item[\Q{&}] -- přechod na novou buňku
+	\item[\Q{\\ \\}] -- přechod na nový řádek
+\end{description}
+
+\subsection{Formátování sloupců}
+
+\begin{description}
+	\item[\Q{r}] -- sloupec zarovnaný vpravo
+	\item[\Q{l}] -- sloupec zarovnaný vlevo
+	\item[\Q{c}] -- sloupec zarovnaný na střed
+	\item[\Q{p{4cm}}] -- sloupec s pevnou šířkou (zde 4 cm)
+	\item[\Q{|}] -- oddělí vedle sebe ležící sloupce čárou (přidá mezi ně ohraničení)
+	\item[\Q{@{+++}}] -- definice vlastního oddělovače sloupců (zde tři znaky +), lze ale zvolit libovolný jiný znak, nebo řetězec znaků
+\end{description}
+
+\noindent\textbf{Příklad 7 - Zarovnání na desetinnou čárku (trik)}
+
+\begin{tabular}{lr@{,}l}
+	\hline Alice & 1 & 51 \\
+	Bob & 12 & 3 \\
+	\hline
+\end{tabular}
+\begin{verbatim}
+	\begin{tabular}{lr@{,}l}
+	\hline Alice & 1 & 51 \\
+	Bob & 12 & 3 \\
+	\hline
+	\end{tabular}
+\end{verbatim}
+
+\noindent\textbf{Příklad 8 - Alternativní ohraničení (Booktabs)}
+
+\begin{tabular}{ccccc}
+	\toprule[1pt] D & $P_u$ & $u_u$ & $\beta$ & $G_f$ \\
+	{[in]} & [lbs] & [in] & & [psi·in] \\
+	\midrule[1pt] 5 & 269.8 & 0.000674 & 1.79 & 0.04089 \\
+	\midrule 10 & 421.0 & 0.001035 & 3.59 & 0.04089 \\
+	\midrule 20 & 640.2 & 0.001565 & 7.18 & 0.04089 \\
+	\bottomrule[1pt]
+\end{tabular}
+\begin{verbatim}
+	\begin{tabular}{ccccc}
+	\toprule[1pt] D & $P_u$ & $u_u$ & $\beta$ & $G_f$ \\
+	{[in]} & [lbs] & [in] & & [psi·in] \\
+	\midrule[1pt] 5 & 269.8 & 0.000674 & 1.79 & 0.04089 \\
+	\midrule 10 & 421.0 & 0.001035 & 3.59 & 0.04089 \\
+	\midrule 20 & 640.2 & 0.001565 & 7.18 & 0.04089 \\
+	\bottomrule[1pt]
+	\end{tabular}
+\end{verbatim}
+
+\noindent\textbf{Příklad 9 - Multirow, multicolumn}
+
+\begin{tabular}{|c|c|c|c|p{1cm}p{1cm}p{1cm}p{1cm}p{1cm}p{1cm}p{1cm}|}
+	\hline
+	A & B & C & D & \multicolumn{7}{|c|}{F}  \\ \hline
+	\multirow{2}{*}{1} & 0 & 6 & 230 & 35 & 40 & 55 & 25 & 40 & 35 & \\
+	& 1 & 5 & 195 & 25 & 50 & 35 & 40 & 45 &  &  \\ \hline
+\end{tabular}
+\begin{verbatim}
+	\begin{tabular}{|c|c|c|c|p{1cm}p{1cm}p{1cm}p{1cm}p{1cm}p{1cm}p{1cm}|}
+	\hline
+	A & B & C & D & \multicolumn{7}{|c|}{F}  \\ \hline
+	\multirow{2}{*}{1} & 0 & 6 & 230 & 35 & 40 & 55 & 25 & 40 & 35 & \\
+	& 1 & 5 & 195 & 25 & 50 & 35 & 40 & 45 &  &  \\ \hline
+	\end{tabular}
+\end{verbatim}
+
+V případě příkazu \verb|multicolumn{7}{c}{text}| první parametr určuje počet sloupců, které \uv{multisloupec} zabírá, druhý určuje zarovnání (včetně případného ohraničení) a třetí pak obsah.
+
+U příkazu \verb|\multirow{2}{*}{text}| první parametr určuje počet zabíraných řádek (řádek uvedení příkazu je první), druhý šířku (lze použít znak \verb|*| - pak je šířka automatická) a poslední argument opět obsahuje text.
+
+Za zmínku ještě stojí příkaz tzv. \emph{dcolumn} -- je to speciální typ sloupce, který umožňuje snadné zarovnávání podle určitého parametru -- například konkrétního znaku. Při použití formulace \verb|D{:}{:}{3.3}| dojde k zarovnání podle dvojtečky tak, že na každé straně bude místo na tři platné číselné pozice. První argument specifikuje, jaký je referenční znak pro zarovnání ve zdrojovém kódu, druhý určuje znak pro zarovnání ve výstupním PDF (je tedy možné použít jiný znak v kódu \LaTeX u a jiný si nechat vypisovat do PDF), třetí pak počet platných číslic, které se mají vypsat. Je také možné specifikovat jiný počet číslic pro každou stranu zarovnání.
+
+\clearpage
+
+\section{Matematika}
+
+Matematický zápis nám v \LaTeX u umožňuje balíček AMSMath projektu \AmS-\LaTeX.
+
+\subsection{Základní pravidla}
+
+Matematický mód \LaTeX u se řídí několika jednoduchými pravidly, která je při sázení dobré mít na paměti:
+\begin{itemize}
+	\item mezery jsou ignorovány (libovolný počet mezer = 0 mezer)
+	\item v sekci pro matematický zápis se nesmí objevit prázdný řádek
+	\item výchozí styl písma je kurzívou
+	\item každé písmeno \LaTeX\  považuje za samostatnou proměnnou
+	\item v matematickém zápisu není možné užívat stejné příkazy, jako v běžném textu
+\end{itemize}
+
+\subsection{Oddíly pro matematický zápis}
+
+Matematický zápis můžeme využívat ve dvou různých stylech. Jako součást odstavce souvislého textu -- tzv. \emph{in-line}, nebo jako samostatný blok zabírající celou šířku stránky -- chová se jako \emph{vlastní odstavec}.
+
+\noindent Pro \emph{in-line} zápis můžeme použít následující uvozující znaky:
+\begin{itemize}
+	\item \verb|\begin{math} ... \end{math}|
+	\item \verb|\( ... \)|
+	\item \verb|$ ... $|
+\end{itemize}
+
+\noindent Pro zápis do \emph{vlastního odstavce} můžeme zase použít následující uvozující znaky:
+\begin{itemize}
+	\item \verb|\begin{displaymath} ... \end{displaymath}|
+	\item \verb|\[ ... \]|
+	\item \verb|$$ ... $$|
+	\item \verb|\begin{equation} ... \end{equation}|
+\end{itemize}
+
+\subsection{Znaky}
+
+\begin{description}
+	\item[mocnina/horní index] -- $x^2$ -- \verb|x^2|, resp. \verb|x^{2}|
+	\item[dolní index] -- $x_2$ -- \verb|x_2|, resp. \verb|x_{2}|
+	\item[odmocnina] -- $\sqrt{x}$, popř. $\sqrt[3]{x}$ -- \verb|\sqrt{x}|, popř. \verb|\sqrt[3]{x}|
+	\item[zlomek] -- $\frac{a}{b}$ -- \verb|\frac{a}{b}|
+	\item[suma] -- $\sum_{i=0}^{n}x^a$ -- \verb|\sum_{i=0}^{n}x^a| -- zápis je v podstatě znak sumy s dolním a horním indexem
+	\item[integrál] -- $\int_{i=0}^{n}x^a$ -- \verb|\int_{i=0}^{n}x^a| -- obdobně jako v případě sumy se jedná o znak integrálu s dolním a horním indexem
+	\item[produkt] -- $\prod_{i=0}^{n}x^a$ -- \verb|\prod_{i=0}^{n}x^a|
+	\item[funkce] -- $\sin(x) \cos(x) \tan(x) \max_{x\in M}\{x\}$ -- \verb|\sin(x) \cos(x) \tan(x) \max_{x\in M}\{x\}| -- všechny základní funkce mají svůj vlastní příkaz
+\end{description}
+
+\subsection{Mezery}
+
+Jak již bylo uvedeno, matematický zápis ignoruje všechny mezery. Pokud je tedy chceme do zápisu přidat, \AmS-\LaTeX nám poskytuje několik možností:
+
+\begin{itemize}
+	\item \verb|\quad| -- mezera šířky písmene M
+	\item \verb*|\ | -- 1/2 quadu
+	\item \verb|\qquad| -- 2 quady
+	\item \verb|\,| -- 3/18 quadu
+	\item \verb|\:| -- 4/18 quadu
+	\item \verb|\;| -- 5/18 quadu
+\end{itemize}
+
+\subsection{Zápisy}
+
+Matematický zápis je v \LaTeX u na pokročilé úrovni. Často však uvnitř vlastního odstavce s rovnicemi chceme zapsat i prostý text. To nám umožňuje značka \verb|\text{abc}|:
+
+$$x^2\geq0 \text{ pro všechna } x$$
+
+Problém může nastat při zápisu závorek. Ty by velikostně měly odpovídat velikosti obsahu. Z tohoto důvodu nemůžeme používat standardní znaky, ale místo nich speciální značky \verb|\left(text| a \verb|\right)| (analogicky pro hranaté závorky):
+
+$$\left(\frac{a}{b}\right)^2$$
+
+Často v matematice také používáme tři tečky jako výpustku. I ta má v \LaTeX u svou vlastní značku. Je však třeba rozlišovat, zda potřebujeme tečky na úrovni základní linky textu (použijeme \verb|\ldots|) nebo na středu řádku (použijeme \verb|cdost|). \LaTeX\  také poskytuje do určité míry \uv{chatré} řešení v podobě značky \verb|\dots|, ta by měla z kontextu (okolního textu) využít správný druh teček (ukázka v druhém řádku příkladu níže).
+
+$$ i\in\{1,2,\ldots,n\} \qquad x_1 + x_2 + \cdots + x_n $$
+$$ i\in\{1,2,\dots,n\} \qquad x_1 + x_2 + \dots + x_n $$
+
+V neposlední řadě je dobré myslet také na zápis matic -- ten je velmi podobný tabulkám a často se zde využívá v předešlé kapitole zmíněný \emph{dcolumn} (kvůli zarovnání na desetinnou čárku). Příklad si můžete prohlédnout níže:
+
+$$
+A=\left(
+\begin{array}{@{}cD{.}{.}{3.2}@{}}
+1 & -24.5 \\
+3 & 5.22
+\end{array}\right)
+$$
+
+\begin{verbatim}
+	$$
+	A=\left(
+	\begin{array}{@{}cD{.}{.}{3.2}@{}}
+	1 & -24.5 \\
+	3 & 5.22
+	\end{array}\right)
+	$$
+\end{verbatim}
+
+Další zajímavost se týká značky \verb|\begin{equation}|, výsledná rovnice je totiž číslovaná a jde se na ni odkazovat pomocí značky \verb|\label{xx}| a \verb|\ref{xx}|, jak můžete vidět v rovnici \ref{xx}:
+
+\begin{equation}
+\label{xx}
+\mathcal{X}=\frac{1}{n}\sum_{i=1}^{r}p_ix_i \qquad
+\mathcal{S}=\sqrt{\frac{1}{n}\sum_{i=1}^{r}p_i(x_i-\mathcal{X})^2},
+\end{equation}
+
+\begin{verbatim}
+	\begin{equation}
+	\label{xx}
+	\mathcal{X}=\frac{1}{n}\sum_{i=1}^{r}p_ix_i \qquad
+	\mathcal{S}=\sqrt{\frac{1}{n}\sum_{i=1}^{r}p_i(x_i-\mathcal{X})^2},
+	\end{equation}
+\end{verbatim}
+
+Rovnice lze také spojovat do skupin (zde například skupina rovnic \ref{eq:x} obsahující rovnice \ref{eq:x1} a \ref{eq:x2}):
+
+\begin{subequations}\label{eq:x}
+	\begin{align}
+	x & = a + b \label{eq:x1} \\
+	y & = c - d + 15 \label{eq:x2}
+	\end{align}
+\end{subequations}
+
+\begin{verbatim}
+	\begin{subequations}\label{eq:x}
+	\begin{align}
+	x & = a + b \label{eq:x1} \\
+	y & = c - d + 15 \label{eq:x2}
+	\end{align}
+	\end{subequations}
+\end{verbatim}
+
+A také lze místo běžného číslování rovnice rovnou pojmenovávat názvy. Mějte ale na paměti, že názvy neslouží jako reference:
+
+\begin{gather}
+	\lim_{n\to\infty}\sqrt[n]{\left(\frac{n}{n+1}\right)^{n^2}} = \lim_{n\to\infty}\left(1+\frac{1}{n}\right)^{-n} = \frac{1}{\mathrm{e}}<0 \tag{Cauchy}
+\end{gather}
+
+\begin{verbatim}
+	\begin{gather}
+	\lim_{n\to\infty}\sqrt[n]{\left(\frac{n}{n+1}\right)^{n^2}} =
+	\lim_{n\to\infty}\left(1+\frac{1}{n}\right)^{-n} =
+	\frac{1}{\mathrm{e}}<0 \tag{Cauchy}
+	\end{gather}
+\end{verbatim}
+
+Často chceme také zapsat znak číselné množiny, jako jsou reálná čísla, přirozená čísla atd. K tomuto není nutný speciální příkaz, ale využití správného fontu z balíčku \emph{AMSFonts}, který je k dispozici pouze v matematickém zápisu. Máme tedy reálná čísla -- $\mathbb{R}$ (\verb|$\mathbb{R}$|), racionální čísla -- $\mathbb{Q}$ (\verb|$\mathbb{Q}$|), celá čísla -- $\mathbb{Z}$ (\verb|$\mathbb{Z}$|), přirozená čísla -- $\mathbb{N}$ (\verb|$\mathbb{N}$|) a také komplexní čísla -- $\mathbb{C}$ (\verb|$\mathbb{C}$|).
+
+\section{Obrázky}
+
+Vkládání obrázků je na první pohled složitější, než v případě např. Wordu. Jeho výsledek je také nejistý, protože o výsledném umístění obrázku nakonec rozhodne sám \LaTeX, a to bez vašeho vědomí.
+
+Máme dvě možnosti, jak zaobalit obrázek pro vložení do dokumentu. Buď do značky \verb|figure|, nebo \verb|table|. Níže si ukážeme například první možnost:
+
+\begin{figure}[!htp]
+	\begin{center}
+		\includegraphics[scale=0.1]{logo-fjfi.png}
+	\end{center}
+	\caption{Logo FJFI}
+	\label{fig:logo}
+\end{figure}
+
+\begin{verbatim}
+	\begin{figure}[!htp]
+	\begin{center}
+	\includegraphics[scale=0.1]{logo-fjfi.png}
+	\end{center}
+	\caption{Logo FJFI}
+	\label{fig:logo}
+	\end{figure}
+\end{verbatim}
+
+U značky \verb|figure|, první parametr určuje, kam se obrázek umístí. Možné hodnoty parametru jsou následující:
+
+\begin{itemize}
+	\item \verb|h| -- here -- umístění zde
+	\item \verb|t| -- top -- k hornímu okraji stránky
+	\item \verb|b| -- bottom -- k dolnímu okraji stránky
+	\item \verb|p| -- page -- samostatná stránka s obrázky
+	\item \verb|!| -- slouží k potlačení méně důležitých omezení pro umístění obrázku
+\end{itemize}
+
+Parametry lze samozřejmě libovolně kombinovat -- \LaTeX\  se je bude snažit v uvedeném pořadí plnit. Často se jako parametr využívá řetězec \verb|!htp|.
+
+Další značky a parametry, které stojí za zmínku, jsou \verb|\includegraphics[scale=0.1]{logo-fjfi.png}|, která se stará o samotné načtení obrázku. První (volitelný) parametr udává násobící člen pro zvětšení/zmenšení obrázku, druhý (povinný) pak cestu k souboru s obrázkem.
+
+Značka \verb|caption| slouží jako viditelný popisek obrázku, přes \verb|label| se lze na obrázek standardně odkazovat -- viz. Obrázek \ref{fig:logo}.
+
+Chcete-li si na začátku/konci dokumentu nechat vytvořit seznam všech obrázků, je k tomu možné využít příkazy \verb|\listoffigures| nebo \verb|\listoftables|, které jej pro vás automaticky vygenerují.
+
+\section{Reference, poznámky, odkazy}
+
+\subsection{Reference}
+\label{reference}
+\LaTeX\  umožňuje snadné reference na stránky, nebo kapitoly. V případě \emph{reference na kapitolu} stačí za příslušnou značku \verb|section| doplnit \verb|label{nazev}|, kde \uv{nazev} je zvolené jméno, přes které se pak budeme na referenci odvolávat. Kdekoliv v textu se pak můžeme odvolat na to, že v sekci \ref{reference} (\verb|ref{reference}|) na stránce \pageref{reference} (\verb|pageref{reference}|) se něco nachází.
+
+\subsection{Poznámka pod čarou}
+
+Narozdíl například od Wordu se v \LaTeX u uvádí poznámka pod čarou přímo na místo, kde se nachází. Vždy se tak po vytvoření PDF bude nacházet na správné stránce\footnote{Lorem ipsum dolor sit amet.}.
+
+Pro její vytvoření se využívá příkaz \verb|footnote{text}|.
+
+\subsection{Použité zdroje}
+
+Použití zápisu využitých zdrojů ponecháme na čtenáři -- omezíme se pouze na konstatování, že tuto funkcionalitu v \LaTeX u poskytuje balíček Bib\TeX.
+
+Jednoduchou správu může poskytovat i \LaTeX sám, není ale příliš efektivní a výstupy nemusí splňovat podmínky pro formát uvádění zdrojů. Viz. příklad níže:
+
+\begin{thebibliography}{9}
+	\bibitem{lamport94}
+		Leslie Lamport,
+		\textit{\LaTeX: a document preparation system},
+		Addison Wesley, Massachusetts,
+		2nd edition,
+		1994.
+\end{thebibliography}
+
+\begin{verbatim}
+	\begin{thebibliography}{9}
+		\bibitem{lamport94}
+		Leslie Lamport,
+		\textit{\LaTeX: a document preparation system},
+		Addison Wesley, Massachusetts,
+		2nd edition,
+		1994.
+	\end{thebibliography}
+\end{verbatim}
+
+Je také možné se na jednotlivé zdroje odvolávat -- \cite[chapter, p.~215]{lamport94}.
+
+\section{Vlastní příkazy}
+
+\LaTeX\  umožňuje definování vlastních příkazů. Je tak možné doplnit určitou funkcionalitu, která není snadno dostupná, popřípadě zjednodušit složité zápisy, které se často opakují. Lze tak dosáhnout snazšího zápisu, který je mnohem lépe čitelný.
+
+Pro definování vlastního příkazu se využívá příkaz \verb|newcommand|, který píšeme do preambule dokumentu. Je specifikován takto:
+
+\noindent\verb|newcommand{\R}[1]{$\mathbb{R}_#1$}|
+
+V prvních složených závorkách je uvedena značka vlastního příkazu, kterou se na něj budeme odvolávat v dokumentu. V hranatých závorkách je uveden počet argumentů, které lze k příkazu přidružit (maximálně 9). V posledních složených závorkách je pak řetězec, který říká, co značka dělá (v tomto případě vypíše v matematickém zápisu R, jako značku množiny reálných čísel). V definici příkazu se lze na jednotlivé parametry odvolávat přes \verb|#|, za kterou je uvedeno číslo označující pořadí parametru (indexováno je od 1).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
