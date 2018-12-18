@@ -1,0 +1,43 @@
+\documentclass{article}
+
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+
+\usepackage{dcolumn}
+\usepackage{multicol}
+\usepackage{multirow}
+
+\begin{document}
+
+\begin{tabular}{||r@{...}l|p{3cm}r@{,}l||}
+	Id & Příjmení & Jméno &   &   \\
+	\hline\hline 1 & Jaroš & Jan & 4 & 5 \\
+	2 & Jančařík & Václav & 6 & 01 \\
+	3 & Okruhlica & Štefan & 33 & 3333 \\
+	4 & Karlová & Beata & 8 & 88
+\end{tabular}
+
+\vspace{3em}
+
+\begin{tabular}{||r@{...}l|p{3cm}D{,}{,}{3.4}||}
+	Id & Příjmení & Jméno & \\
+	\hline 1 & Jaroš & Jan & 4,5 \\
+	2 & Jančařík & Václav & 6,01 \\
+	3 & Okruhlica & Štefan & 33,3333 \\
+	4 & Karlová & Beata & 8,88
+\end{tabular}
+
+\vspace{3em}
+
+\begin{tabular}{|r|l|l|D{,}{,}{3.4}|l|}
+	Id & \multicolumn{2}{c}{Příjmení, jméno} & Lo,rem & Ročník \\
+	\hline 1 & Jaroš & Jan & 4,5 & \multirow{4}{*}{3. ročník} \\
+	2 & Jančařík & Václav & 6,01 & \\
+	3 & Okruhlica & Štefan & 33,3333 & \\
+	4 & Karlová & Beata & 8,88 &
+\end{tabular}
+
+
+
+\end{document}

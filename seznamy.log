@@ -1,0 +1,119 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6880 64-bit) (preloaded format=pdflatex 2018.12.4)  18 DEC 2018 12:07
+entering extended mode
+**./seznamy.tex
+(seznamy.tex
+LaTeX2e <2018-04-01> patch level 5
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\size10.clo"
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\babel\babel.sty"
+Package: babel 2018/11/13 3.27 The Babel package
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\babel\switch.def"
+File: switch.def 2018/11/13 3.27 Babel switching mechanism
+)
+*************************************
+* Local config file bblopts.cfg used
+*
+("C:\Program Files\MiKTeX 2.9\tex\latex\arabi\bblopts.cfg"
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\babel-czech\czech.ldf"
+Language: czech 2008/07/06 v3.1a Czech support from the babel system
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\babel\babel.def"
+File: babel.def 2018/11/13 3.27 Babel common definitions
+\babel@savecnt=\count88
+\U@D=\dimen103
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\babel\txtbabel.def")
+\bbl@dirlevel=\count89
+)
+Package babel Info: Making " an active character on input line 172.
+\cs@wordlen=\count90
+Package babel Info: Making - an active character on input line 226.
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\inputenc.sty"
+Package: inputenc 2018/04/06 v1.3b Input encoding file
+\inpenc@prehook=\toks14
+\inpenc@posthook=\toks15
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
+Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
+
+("C:\Program Files\MiKTeX 2.9\tex\cslatex\base\il2enc.def"
+File: il2enc.def 1997/08/20 CSLaTeX
+Now handling font encoding IL2 ...
+... no UTF-8 mapping file for font encoding IL2
+)
+LaTeX Font Info:    Try loading font information for IL2+cmr on input line 105.
+
+
+("C:\Program Files\MiKTeX 2.9\tex\cslatex\base\il2cmr.fd"
+File: il2cmr.fd 1997/02/06 CSLaTeX font definitions
+)) (seznamy.aux)
+\openout1 = `seznamy.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for IL2/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 9.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 9.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 12.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 12.
+ [1
+
+{C:/Users/vitvalecka/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] (sezna
+my.aux) ) 
+Here is how much of TeX's memory you used:
+ 1222 strings out of 492969
+ 14711 string characters out of 3135832
+ 81841 words of memory out of 3000000
+ 5143 multiletter control sequences out of 15000+200000
+ 5357 words of font info for 17 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 23i,4n,23p,270b,148s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\vitvalecka\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\public\
+csfonts\dpi600\csbx10.pk> <C:\Users\vitvalecka\AppData\Local\MiKTeX\2.9\fonts\p
+k\ljfour\public\csfonts\dpi600\csr7.pk> <C:\Users\vitvalecka\AppData\Local\MiKT
+eX\2.9\fonts\pk\ljfour\public\csfonts\dpi600\csr10.pk><C:/Program Files/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on seznamy.pdf (1 page, 30103 bytes).
+PDF statistics:
+ 83 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

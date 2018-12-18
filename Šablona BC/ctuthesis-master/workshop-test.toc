@@ -1,0 +1,24 @@
+\babel@toc {czech}{}
+\babel@toc {czech}{}
+\babel@toc {czech}{}
+\babel@toc {czech}{}
+\babel@toc {czech}{}
+\babel@toc {czech}{}
+\contentsline {paragraph}{Kl\'i\v cov\'a\ slova:}{iv}{paragraph*.1}
+\contentsline {paragraph}{\v Skolitel:}{iv}{paragraph*.2}
+\babel@toc {english}{}
+\contentsline {paragraph}{Keywords:}{iv}{paragraph*.3}
+\contentsline {paragraph}{Title\ translation:}{iv}{paragraph*.4}
+\babel@toc {czech}{}
+\babel@toc {czech}{}
+\babel@toc {czech}{}
+\babel@toc {czech}{}
+\babel@toc {czech}{}
+\babel@toc {english}{}
+\babel@toc {czech}{}
+\babel@toc {czech}{}
+\babel@toc {czech}{}
+\babel@toc {czech}{}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {chapter}{\numberline {2}Conclusion}{3}{chapter.2}
+\contentsline {chapter}{Literatura}{5}{chapter*.5}
